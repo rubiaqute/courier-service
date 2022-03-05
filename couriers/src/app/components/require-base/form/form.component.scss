@@ -13,27 +13,46 @@
 
 .modal {
   position: relative;
-  overflow-y: hidden;
-  width: 70%;
-  max-height: 80%;
+  overflow-y: auto;
+  width: 80%;
+  max-height: 90%;
   min-height: 50%;
-  border: rgba(31, 112, 127, .3);
-background-color: white;
+  border: rgba(31, 112, 127, 0.3);
+  background-color: white;
   border-radius: 5%;
   box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
-  padding: 5%;
-
+  padding: 2% 5%;
 }
 .form {
   padding: 1rem;
   border: #ccc 1px dotted;
   margin: 0.7rem 0;
 }
-input{
-  &.ng-invalid.ng-touched{
-    border: 1px solid red
+input {
+  &.ng-invalid.ng-touched {
+    border: 1px solid red;
   }
-  &.ng-valid{
-    border: 1px solid green
+  &.ng-valid {
+    border: 1px solid green;
+  }
+}
+.validation{
+text-align: center;
+}
+.header{
+  text-align: center;
+}
+.two-columns {
+  display: flex;
+  justify-content: space-between;
+  label {
+    width: 30%;
+    align-self: center;
+  }
+  .form-control_flexed {
+    width: 40%;
+    label {
+      width: 40%;
+    }
   }
 }
