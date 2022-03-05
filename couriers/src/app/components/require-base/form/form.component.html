@@ -1,0 +1,23 @@
+<div class="overlay">
+  <div class="modal">
+<form class="form" [formGroup]="form" (ngSubmit)="submit()">
+  <h1>Заявка</h1>
+  <div class="form-control">
+    <label>ФИО</label>
+    <input type="text" placeholder="Введите ваше ФИО" formControlName = 'name'>
+    <div class="validator" ></div>
+  </div>
+  <div class="form-control">
+    <label>Телефон</label>
+    <input type="phone" placeholder="Введите ваш номер телефона" formControlName = 'phone'>
+    <div class="validator"></div>
+  </div>
+  <div class="form-control">
+    <label>Email</label>
+    <input type="email"  placeholder="Введите ваш email" formControlName = 'email'>
+    <div class="validator"></div>
+  </div>
+<button type="submit" [disabled]="form.invalid">Сохранить</button>
+</form>
+  </div>
+</div>
