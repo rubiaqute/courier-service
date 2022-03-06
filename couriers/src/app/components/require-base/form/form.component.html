@@ -1,6 +1,6 @@
 <div class="overlay">
   <div class="modal">
-    <div class="material-icons"><span class="button">
+    <div class="material-icons"><span class="button" (click)="closeForm()">
       highlight_off
       </span>
     </div>
@@ -11,7 +11,7 @@
   <div class="form-control">
     <div class="two-columns">
     <label>ФИО</label>
-    <input type="text" placeholder="Введите ваше ФИО" formControlName = 'name'>
+    <input type="name" placeholder="Введите ваше ФИО" formControlName = 'name'>
   </div>
     <div class="validation" *ngIf="form.get('name')!.invalid && form.get('name')!.touched">
       <small *ngIf="form.get('name')!.errors!['required']!">Поле не может быть пустым</small>
@@ -48,7 +48,7 @@
   <div class="form-control">
     <div class="two-columns">
     <label>Название (ФИО)</label>
-    <input type="text" placeholder="Введите название/ФИО получателя" formControlName = 'receiver'>
+    <input type="name" placeholder="Введите название/ФИО получателя" formControlName = 'receiver'>
   </div>
     <div class="validation" *ngIf="form.get('receiver')!.invalid && form.get('receiver')!.touched">
       <small *ngIf="form.get('receiver')!.errors!['required']!">Поле не может быть пустым</small>
@@ -90,7 +90,7 @@
   <div class="form-control">
     <div class="two-columns">
     <label>Название (ФИО)</label>
-    <input type="text" placeholder="Введите название/ФИО отправителя" formControlName = 'sender'>
+    <input type="name" placeholder="Введите название/ФИО отправителя" formControlName = 'sender'>
   </div>
     <div class="validation" *ngIf="form.get('sender')!.invalid && form.get('sender')!.touched">
       <small *ngIf="form.get('sender')!.errors!['required']!">Поле не может быть пустым</small>
@@ -132,19 +132,19 @@
     <label>Вес посылки</label>
 
     <select formControlName="weight">
-      <option value="1">до 1 кг</option>
-      <option value="5">1 - 5 кг</option>
-      <option value="10">5 - 10 кг</option>
-      <option value="10">10 - 15 кг</option>
+      <option [value]="weightSelection.small" >{{weightSelection.small}}</option>
+      <option [value]="weightSelection.middle">{{weightSelection.middle}}</option>
+      <option [value]="weightSelection.big">{{weightSelection.big}}</option>
+      <option [value]="weightSelection.large">{{weightSelection.large}}</option>
     </select>
   </div>
   <div class="form-control form-control_flexed">
     <label>Плательщик</label>
 
     <select formControlName="payment">
-      <option value="client">Заказчик</option>
-      <option value="receiver">Получатель</option>
-      <option value="sender">Отправитель</option>
+      <option [value]="paymentSelection.client" selected>{{paymentSelection.client}}</option>
+      <option [value]="paymentSelection.receiver">{{paymentSelection.receiver}}</option>
+      <option [value]="paymentSelection.sender">{{paymentSelection.sender}}</option>
 
     </select>
   </div>

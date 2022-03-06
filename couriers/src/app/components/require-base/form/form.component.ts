@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { IPayment, IRequire, IStatus, IWeight } from '../requires-base';
 
 @Component({
   selector: 'app-form',
@@ -7,10 +8,15 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./form.component.scss'],
 })
 export class FormComponent implements OnInit {
+  @Output() onCloseButton = new EventEmitter();
+  @Output() onSubmitButton = new EventEmitter<IRequire>();
   form: FormGroup;
   constructor() {
     this.form = new FormGroup({});
   }
+
+  weightSelection = IWeight;
+  paymentSelection = IPayment;
   ngOnInit(): void {
     this.form = new FormGroup({
       name: new FormControl('', [
@@ -20,7 +26,7 @@ export class FormComponent implements OnInit {
       ]),
       phone: new FormControl('', [Validators.required, this.validatePhone]),
       email: new FormControl('', [Validators.email, Validators.required]),
-      weight: new FormControl('1'),
+      weight: new FormControl(IWeight.small, [Validators.required]),
       receiver: new FormControl('', [
         Validators.required,
         Validators.minLength(3),
@@ -49,19 +55,32 @@ export class FormComponent implements OnInit {
         Validators.required,
         this.validatePhone,
       ]),
-      payment: new FormControl('client'),
+      payment: new FormControl(IPayment.client,  [Validators.required]),
     });
   }
   submit() {
-    const newRequire = { ...this.form.value };
-    console.log(newRequire);
+    const data = { ...this.form.value };
+    const newRequire: IRequire = {
+      name: data.name,
+      phone: data.phone,
+      email: data.email,
+      weight: data.weight,
+      receiverPhone: data.receiverAddresse,
+      senderPhone: data.senderPhone,
+      payment: data.payment,
+      status: IStatus.start,
+      date: new Date().toLocaleDateString(),
+      receiver: data.receiver,
+      receiverAddresse: data.receiverAddresse,
+      sender: data.sender,
+      senderAddresse: data.senderAddresse,
+    };
+    console.log(newRequire)
+    this.onSubmitButton.emit(newRequire);
   }
   validateName(control: FormControl) {
-    const value = control.value
-    if (
-      !/^[a-zA-Zа-яА-Я'" ]+[a-zA-Zа-яА-Я]?$/.test(value) &&
-      value !== ''
-    ) {
+    const value = control.value;
+    if (!/^[a-zA-Zа-яА-Я'" ]+[a-zA-Zа-яА-Я]?$/.test(value) && value !== '') {
       return {
         wrongName: true,
       };
@@ -69,16 +88,12 @@ export class FormComponent implements OnInit {
     return null;
   }
   validateAddresse(control: FormControl) {
-    const value = control.value
+    const value = control.value;
     if (
-      !/^[a-zA-Zа-яА-Я'",.-/0-9() ]+[a-zA-Zа-яА-Я'",.-/0-9() ]?$/.test(
-        value
-      ) ||
-      !/[0-9]/.test(value)||
-      !/[a-zA-Zа-яА-Я]/.test(value)&&
-      value !== ''
+      !/^[a-zA-Zа-яА-Я'",.-/0-9() ]+[a-zA-Zа-яА-Я'",.-/0-9() ]?$/.test(value) ||
+      !/[0-9]/.test(value) ||
+      (!/[a-zA-Zа-яА-Я]/.test(value) && value !== '')
     ) {
-
       return {
         wrongAddresse: true,
       };
@@ -92,5 +107,8 @@ export class FormComponent implements OnInit {
       };
     }
     return null;
+  }
+  closeForm() {
+    this.onCloseButton.emit();
   }
 }
