@@ -1,0 +1,31 @@
+<div class="overlay">
+  <div class="modal">
+    <div class="material-icons"><span class="button" (click)="closeRequire()">
+      highlight_off
+      </span>
+    </div>
+    <h2 class="header">Заявка № {{reqFromBase.id}}</h2>
+    <p class="header__subtitle">Статус: {{reqFromBase.status}}</p>
+    <p class="header__subtitle">Вес:  {{reqFromBase.weight}}</p>
+
+    <h3>Заказчик:</h3>
+
+    <p>{{reqFromBase.name}}</p>
+    <p>{{reqFromBase.phone}}</p>
+    <p>{{reqFromBase.email}}</p>
+    <hr>
+  <h3>Получатель:</h3>
+
+    <p>{{reqFromBase.receiver}}</p>
+    <p>{{reqFromBase.receiverAddresse}}</p>
+    <p>{{reqFromBase.receiverPhone}}</p>
+    <hr>
+    <h3>Отправитель:</h3>
+
+    <p>{{reqFromBase.sender}}</p>
+    <p>{{reqFromBase.senderAddresse}}</p>
+    <p>{{reqFromBase.senderPhone}}</p>
+    <hr>
+    <h3>Плательщик: {{reqFromBase.payment}}</h3>
+  </div>
+</div>

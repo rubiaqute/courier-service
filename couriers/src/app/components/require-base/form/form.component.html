@@ -1,0 +1,157 @@
+<div class="overlay">
+  <div class="modal">
+    <div class="material-icons"><span class="button" (click)="closeForm()">
+      highlight_off
+      </span>
+    </div>
+<form class="form" [formGroup]="form" (ngSubmit)="submit()">
+  <h2 class="header">Новая заявка на курьера</h2>
+  <h3>Заказчик</h3>
+  <hr>
+  <div class="form-control">
+    <div class="two-columns">
+    <label>ФИО</label>
+    <input type="name" placeholder="Введите ваше ФИО" formControlName = 'name'>
+  </div>
+    <div class="validation" *ngIf="form.get('name')!.invalid && form.get('name')!.touched">
+      <small *ngIf="form.get('name')!.errors!['required']!">Поле не может быть пустым</small>
+      <small *ngIf="form.get('name')!.errors!['minlength']!"
+        > Длина должна быть не менее {{form.get('name')!.errors!['minlength']!['requiredLength']}} символов.
+      </small>
+      <small *ngIf="form.get('name')!.errors!['wrongName']!"
+        > Имя должно содержать только русские и латинские буквы
+      </small>
+    </div>
+  </div>
+  <div class="form-control">
+    <div class="two-columns">
+    <label>Телефон</label>
+    <input type="phone" placeholder="Введите ваш номер телефона" formControlName = 'phone'>
+    </div>
+    <div class="validation" *ngIf="form.get('phone')!.invalid && form.get('phone')!.touched">
+      <small *ngIf="form.get('phone')!.errors!['required']!">Поле не может быть пустым</small>
+      <small *ngIf="form.get('phone')!.errors!['wrongPhone']!">Неверный формат телефонного номера</small>
+    </div>
+  </div>
+  <div class="form-control">
+    <div class="two-columns">
+    <label>Email</label>
+    <input type="email"  placeholder="Введите ваш email" formControlName = 'email'>
+  </div>
+    <div class="validation"  *ngIf="form.get('email')!.invalid && form.get('email')!.touched">
+      <small *ngIf="form.get('email')!.errors!['required']!">Поле не может быть пустым</small>
+      <small *ngIf="form.get('email')!.errors!['email']!">Введите корректный e-mail</small>
+    </div>
+  </div>
+  <h3>Получатель</h3>
+  <hr>
+  <div class="form-control">
+    <div class="two-columns">
+    <label>Название (ФИО)</label>
+    <input type="name" placeholder="Введите название/ФИО получателя" formControlName = 'receiver'>
+  </div>
+    <div class="validation" *ngIf="form.get('receiver')!.invalid && form.get('receiver')!.touched">
+      <small *ngIf="form.get('receiver')!.errors!['required']!">Поле не может быть пустым</small>
+      <small *ngIf="form.get('receiver')!.errors!['minlength']!"
+        >Длина должна быть не менее {{form.get('receiver')!.errors!['minlength']!['requiredLength']}} символов.
+      </small>
+      <small *ngIf="form.get('receiver')!.errors!['wrongName']!"
+      > Название должно содержать только русские/латинские буквы и кавычки
+    </small>
+    </div>
+  </div>
+  <div class="form-control">
+    <div class="two-columns">
+    <label>Адрес получателя</label>
+    <input type="addresse" placeholder="Введите адрес получателя" formControlName = 'receiverAddresse'>
+  </div>
+    <div class="validation" *ngIf="form.get('receiverAddresse')!.invalid && form.get('receiverAddresse')!.touched">
+      <small *ngIf="form.get('receiverAddresse')!.errors!['required']!">Поле не может быть пустым</small>
+      <small *ngIf="form.get('receiverAddresse')!.errors!['minlength']!"
+        >Длина должна быть не менее {{form.get('receiverAddresse')!.errors!['minlength']!['requiredLength']}} символов.
+      </small>
+      <small *ngIf="form.get('receiverAddresse')!.errors!['wrongAddresse']!"
+      > Адрес указан некорректно
+    </small>
+    </div>
+  </div>
+  <div class="form-control">
+    <div class="two-columns">
+    <label>Телефон получателя</label>
+    <input type="phone" placeholder="Введите телефон получателя" formControlName = 'receiverPhone'>
+  </div>
+    <div class="validation" *ngIf="form.get('receiverPhone')!.invalid && form.get('receiverPhone')!.touched">
+      <small *ngIf="form.get('receiverPhone')!.errors!['required']!">Поле не может быть пустым</small>
+      <small *ngIf="form.get('receiverPhone')!.errors!['wrongPhone']!">Неверный формат телефонного номера</small>
+    </div>
+  </div>
+  <h3>Отправитель</h3>
+  <hr>
+  <div class="form-control">
+    <div class="two-columns">
+    <label>Название (ФИО)</label>
+    <input type="name" placeholder="Введите название/ФИО отправителя" formControlName = 'sender'>
+  </div>
+    <div class="validation" *ngIf="form.get('sender')!.invalid && form.get('sender')!.touched">
+      <small *ngIf="form.get('sender')!.errors!['required']!">Поле не может быть пустым</small>
+      <small *ngIf="form.get('sender')!.errors!['minlength']!"
+        >Длина должна быть не менее {{form.get('sender')!.errors!['minlength']!['requiredLength']}} символов.
+      </small>
+      <small *ngIf="form.get('sender')!.errors!['wrongName']!"
+      > Название должно содержать только русские/латинские буквы и кавычки
+    </small>
+    </div>
+  </div>
+  <div class="form-control">
+    <div class="two-columns">
+    <label>Адрес отправителя</label>
+    <input type="addresse" placeholder="Введите адрес отправителя" formControlName = 'senderAddresse'>
+  </div>
+    <div class="validation" *ngIf="form.get('senderAddresse')!.invalid && form.get('senderAddresse')!.touched">
+      <small *ngIf="form.get('senderAddresse')!.errors!['required']!">Поле не может быть пустым</small>
+      <small *ngIf="form.get('senderAddresse')!.errors!['minlength']!"
+        >Длина должна быть не менее {{form.get('senderAddresse')!.errors!['minlength']!['requiredLength']}} символов.
+      </small>
+      <small *ngIf="form.get('senderAddresse')!.errors!['wrongAddresse']!"
+      > Адрес указан некорректно
+    </small>
+    </div>
+  </div>
+  <div class="form-control">
+    <div class="two-columns">
+    <label>Телефон отправителя</label>
+    <input type="phone" placeholder="Введите телефон отправителя" formControlName = 'senderPhone'>
+  </div>
+    <div class="validation" *ngIf="form.get('senderPhone')!.invalid && form.get('senderPhone')!.touched">
+      <small *ngIf="form.get('senderPhone')!.errors!['required']!">Поле не может быть пустым</small>
+      <small *ngIf="form.get('senderPhone')!.errors!['wrongPhone']!">Неверный формат телефонного номера</small>
+    </div>
+  </div>
+  <div class="two-columns">
+  <div class="form-control form-control_flexed">
+    <label>Вес посылки</label>
+
+    <select formControlName="weight">
+      <option [value]="weightSelection.small" >{{weightSelection.small}}</option>
+      <option [value]="weightSelection.middle">{{weightSelection.middle}}</option>
+      <option [value]="weightSelection.big">{{weightSelection.big}}</option>
+      <option [value]="weightSelection.large">{{weightSelection.large}}</option>
+    </select>
+  </div>
+  <div class="form-control form-control_flexed">
+    <label>Плательщик</label>
+
+    <select formControlName="payment">
+      <option [value]="paymentSelection.client" selected>{{paymentSelection.client}}</option>
+      <option [value]="paymentSelection.receiver">{{paymentSelection.receiver}}</option>
+      <option [value]="paymentSelection.sender">{{paymentSelection.sender}}</option>
+
+    </select>
+  </div>
+</div>
+<div class="button-wrapper">
+<button type="submit" [disabled]="form.invalid" class="button button_submit">Сохранить</button>
+</div>
+</form>
+  </div>
+</div>
