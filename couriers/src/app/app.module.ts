@@ -7,6 +7,7 @@ import { AppComponent } from './app.component';
 import { AgGridModule } from 'ag-grid-angular';
 import { RequireBaseComponent } from './components/require-base/require-base.component';
 import { FormComponent } from './components/require-base/form/form.component';
+import { RequireComponent } from './components/require-base/require/require.component';
 
 
 @NgModule({
@@ -14,6 +15,7 @@ import { FormComponent } from './components/require-base/form/form.component';
     AppComponent,
     RequireBaseComponent,
     FormComponent,
+    RequireComponent,
   ],
   imports: [
     BrowserModule,

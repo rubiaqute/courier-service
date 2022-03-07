@@ -1,5 +1,6 @@
 <div class="container">
 <app-form *ngIf="isFormOpen" (onCloseButton) = "isFormOpen=!isFormOpen" (onSubmitButton)="addRequire($event)"></app-form>
+<app-require *ngIf="isRequireOpen" (onCloseRequire) = "isRequireOpen=!isRequireOpen" [reqFromBase]="requiresBase[selectedRow]"></app-require>
 <h1>Заявки</h1>
 <div>
   <button class="button button_new" (click)="isFormOpen=!isFormOpen"><span class="material-icons">
@@ -7,10 +8,12 @@
     </span> Создать заявку</button>
 </div>
 <ag-grid-angular
-    class="ag-theme-material"
+    class="ag-theme-alpine"
     [rowData]="rowData"
     [columnDefs]="columnDefs"
     (gridReady)="onGridReady($event)"
+    (rowClicked) ="onRowClicked($event)"
 >
 </ag-grid-angular>
+
 </div>

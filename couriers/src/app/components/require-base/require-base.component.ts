@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { ColDef, GridApi, GridReadyEvent } from 'ag-grid-community';
+import { Component, HostListener, OnInit } from '@angular/core';
+import { ColDef, GridApi, GridReadyEvent, RowClickedEvent, RowSelectedEvent } from 'ag-grid-community';
 import { IRequire, requires } from './requires-base';
 
 @Component({
@@ -8,24 +8,36 @@ import { IRequire, requires } from './requires-base';
   styleUrls: ['./require-base.component.scss'],
 })
 export class RequireBaseComponent implements OnInit {
+  @HostListener('window:resize', ['$event'])
+  onResize() {
+    this.gridApi.sizeColumnsToFit();
+  }
   isFormOpen: boolean = false;
+  isRequireOpen:boolean = false;
+  selectedRow:number=0;
   private gridApi!: GridApi;
   requiresBase = requires;
   columnDefs: ColDef[] = [
-    { headerName: '№ ', field: 'id', width: 80, resizable: true },
-    { headerName: 'Дата', field: 'date', resizable: true, sortable: true },
+    { headerName: '№ ', field: 'id', width:70, resizable: true},
+    { headerName: 'Дата', field: 'date', width:130,resizable: true, sortable: true },
     {
       headerName: 'Отправитель',
       field: 'sender',
       sortable: true,
       filter: true,
       resizable: true,
+      wrapText: true,
+      autoHeight: true,
+
+
     },
     {
       headerName: 'Адрес отправителя',
       field: 'senderAddresse',
       filter: true,
       resizable: true,
+      autoHeight: true,
+
     },
     {
       headerName: 'Телефон',
@@ -39,12 +51,18 @@ export class RequireBaseComponent implements OnInit {
       sortable: true,
       filter: true,
       resizable: true,
+      wrapText: true,
+      autoHeight: true,
+
     },
     {
       headerName: 'Адрес получателя',
       field: 'receiverAddresse',
       filter: true,
       resizable: true,
+      autoHeight: true,
+
+
     },
     {
       headerName: 'Статус',
@@ -63,6 +81,7 @@ export class RequireBaseComponent implements OnInit {
   ngOnInit(): void {
     this.requiresBase = requires;
     this.updateTable();
+
   }
   addRequire(newReq: IRequire) {
     this.requiresBase.push(newReq);
@@ -84,5 +103,9 @@ export class RequireBaseComponent implements OnInit {
       };
       this.rowData.push(row);
     });
+  }
+  onRowClicked(event:RowClickedEvent){
+    this.selectedRow = event.node.data.id - 1
+    this.isRequireOpen = true;
   }
 }

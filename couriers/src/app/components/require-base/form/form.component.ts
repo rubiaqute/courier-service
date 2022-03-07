@@ -65,7 +65,7 @@ export class FormComponent implements OnInit {
       phone: data.phone,
       email: data.email,
       weight: data.weight,
-      receiverPhone: data.receiverAddresse,
+      receiverPhone: data.receiverPhone,
       senderPhone: data.senderPhone,
       payment: data.payment,
       status: IStatus.start,

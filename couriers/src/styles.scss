@@ -1,5 +1,7 @@
 @import "ag-grid-community/dist/styles/ag-grid.css";
-@import "ag-grid-community/dist/styles/ag-theme-material.css";
+@import "ag-grid-community/dist/styles/ag-theme-alpine.css";
+@import "ag-grid-community/dist/styles/ag-theme-alpine/sass/ag-theme-alpine-mixin";
+
 * {
   box-sizing: border-box;
   margin: 0;
@@ -100,4 +102,27 @@ textarea {
 
 hr {
   margin: .5rem 0;
+}
+.ag-theme-alpine {
+  @include ag-theme-alpine((
+      // use theme parameters where possible
+      alpine-active-color: deeppink
+  ));
+
+  .ag-header {
+      // or write CSS selectors to make customisations beyond what the parameters support
+      text-style: italic;
+  }
+  .ag-cell{
+    padding-left: 10px;
+    padding-right: 10px;
+    &:hover{
+      cursor: pointer;
+    }
+  }
+  .ag-header-cell{
+    padding-left: 10px;
+    padding-right: 10px;
+
+  }
 }
