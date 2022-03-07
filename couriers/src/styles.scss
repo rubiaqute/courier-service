@@ -9,10 +9,10 @@
 }
 
 body {
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
   font-size: 1rem;
   line-height: 1.6;
-  background-color: #fff;
+  background-color: #F5F5F5;
   color: #333;
 }
 
@@ -22,55 +22,16 @@ body {
   padding: 1rem;
 }
 
-a {
-  text-decoration: none;
-}
-
-a:hover {
-  color: #666;
-}
-
-ul {
-  list-style: none;
-}
-
-img {
-  width: 100%;
-}
-
-.btn {
-  display: inline-block;
-  background: #333333;
-  color: #fff;
-  padding: 0.4rem 1.3rem;
-  font-size: 1rem;
-  border: none;
-  cursor: pointer;
-  margin-right: 0.5rem;
-  transition: opacity 0.2s ease-in;
-  outline: none;
-
-  &:disabled {
-    background: #ccc;
-    color: #000;
-    cursor: not-allowed;
-  }
-}
-
-.btn:hover {
-  opacity: 0.8;
-}
-
 .form-control {
   display: block;
   margin-top: 0.3rem;
-  margin-bottom: .5rem;
+  margin-bottom: 0.5rem;
 
   label {
     display: block;
     font-weight: bold;
     font-size: 1rem;
-    margin-bottom: .5rem;
+    margin-bottom: 0.5rem;
   }
 
   input {
@@ -82,7 +43,6 @@ img {
   }
 }
 
-
 .button {
   &:hover {
     cursor: pointer;
@@ -90,8 +50,7 @@ img {
   }
 }
 input,
-select,
-textarea {
+select {
   display: block;
   width: 100%;
   padding: 0.4rem;
@@ -101,28 +60,24 @@ textarea {
 }
 
 hr {
-  margin: .5rem 0;
+  margin: 0.5rem 0;
 }
 .ag-theme-alpine {
-  @include ag-theme-alpine((
-      // use theme parameters where possible
-      alpine-active-color: deeppink
-  ));
+  @include ag-theme-alpine(
+    (
+      alpine-active-color: deeppink,
+    )
+  );
 
-  .ag-header {
-      // or write CSS selectors to make customisations beyond what the parameters support
-      text-style: italic;
-  }
-  .ag-cell{
+  .ag-cell {
     padding-left: 10px;
     padding-right: 10px;
-    &:hover{
+    &:hover {
       cursor: pointer;
     }
   }
-  .ag-header-cell{
+  .ag-header-cell {
     padding-left: 10px;
     padding-right: 10px;
-
   }
 }

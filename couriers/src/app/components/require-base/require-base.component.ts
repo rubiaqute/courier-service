@@ -84,6 +84,7 @@ export class RequireBaseComponent implements OnInit {
 
   }
   addRequire(newReq: IRequire) {
+    newReq.id =  this.requiresBase.length+1
     this.requiresBase.push(newReq);
     this.updateTable();
     this.isFormOpen = !this.isFormOpen
