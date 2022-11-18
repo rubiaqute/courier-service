@@ -1,0 +1,83 @@
+@import "ag-grid-community/dist/styles/ag-grid.css";
+@import "ag-grid-community/dist/styles/ag-theme-alpine.css";
+@import "ag-grid-community/dist/styles/ag-theme-alpine/sass/ag-theme-alpine-mixin";
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Roboto", sans-serif;
+  font-size: 1rem;
+  line-height: 1.6;
+  background-color: #F5F5F5;
+  color: #333;
+}
+
+.container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+.form-control {
+  display: block;
+  margin-top: 0.3rem;
+  margin-bottom: 0.5rem;
+
+  label {
+    display: block;
+    font-weight: bold;
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+  }
+
+  input {
+    margin-bottom: 0;
+  }
+
+  .validation {
+    color: red;
+  }
+}
+
+.button {
+  &:hover {
+    cursor: pointer;
+    opacity: 80%;
+  }
+}
+input,
+select {
+  display: block;
+  width: 100%;
+  padding: 0.4rem;
+  font-size: 1.2rem;
+  border: 1px solid #ccc;
+  margin-bottom: 1rem;
+}
+
+hr {
+  margin: 0.5rem 0;
+}
+.ag-theme-alpine {
+  @include ag-theme-alpine(
+    (
+      alpine-active-color: deeppink,
+    )
+  );
+
+  .ag-cell {
+    padding-left: 10px;
+    padding-right: 10px;
+    &:hover {
+      cursor: pointer;
+    }
+  }
+  .ag-header-cell {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+}
